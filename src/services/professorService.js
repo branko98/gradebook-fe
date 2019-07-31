@@ -13,9 +13,9 @@ export default class ProfessorService {
     //     return axios.post('professor', professor)
     // }
 
-    // getProfessor(id) {
-    //     return axios.get(`/professor/${id}`)
-    // }
+    getProfessor(id) {
+        return axios.get(`/professors/${id}`)
+    }
 
     // editProfessor(professor, id) {
     //     return axios.put('/professor/' + id, professor)

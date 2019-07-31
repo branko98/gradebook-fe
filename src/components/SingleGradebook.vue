@@ -7,28 +7,27 @@
             <hr class="my-4">
             <p class="lead">This class have {{ students.length }} students.</p>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">List of students</button>
-
             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                <table class="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First name</th>
-                        <th scope="col">Last name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(student, index) in students" :key="index">
-                        <th scope="row">{{ index }} </th>
-                        <td>{{ student.firstName}} </td>
-                        <td>{{ student.lastName}} </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(student, index) in students" :key="index">
+                            <th scope="row">{{ index }} </th>
+                            <td>{{ student.firstName}} </td>
+                            <td>{{ student.lastName}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>
@@ -43,7 +42,7 @@ export default {
         return {
             gradebook: undefined,
             professor: undefined,
-            students: [],
+            students: {},
         }
     },
 

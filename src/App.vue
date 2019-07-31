@@ -22,6 +22,12 @@
             <li class="nav-item">
               <router-link class="nav-link" to="/">Home</router-link>
             </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/professors">Professors</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/gradebooks/create">Create Gradebook</router-link>
+            </li>
           </ul>
         </div>
       </div>
