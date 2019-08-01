@@ -1,5 +1,5 @@
 <template>
-  <div class="py-3 col-md-7">
+  <div class="py-3 col-md-7" v-if="professors.length">
     <form @submit.prevent="handleCreate">
       <div class="input-group mb-5">
         <div class="input-group-prepend">
@@ -21,7 +21,7 @@
         <select class="custom-select" id="inputGroupSelect01" v-model="newGradebook.professor_id">
           <option selected :value="0">Avalivable</option>
           <option
-            v-for="(professor, index) in avalivableProfessors"
+            v-for="(professor, index) in avalivableProfessors()"
             :key="index"
             :value="`${professor.id}`"
           >{{ professor.firstName }} {{ professor.lastName }}</option>
@@ -42,17 +42,11 @@ export default {
       newGradebook: {
         class: "",
         professor_id: null
-      }
+      },
     };
   },
   computed: {
-    avalivableProfessors() {
-      return this.professors.filter(professor => {
-        if (!professor.gradebooks) {
-          return professor;
-        }
-      });
-    },
+
   },
   created() {
     professorService
@@ -64,11 +58,27 @@ export default {
         this.errors.push(e);
       });
   },
+  // beforeRouteEnter(to, from, next) {
+  //   next(vm => {
+  //       professorService.getAll().then(response => {
+  //       vm.professors = response.data;
+  //     });
+  //   });
+  // },
   methods: {
     handleCreate() {
       gradebookService.createGradebook(this.newGradebook);
       this.$router.push("/");
-    }
+    },
+   avalivableProfessors() {
+      if(this.professors){
+        return this.professors.filter(professor => {
+        if (!professor.gradebooks) {
+          return professor;
+        }
+      });
+      }
+    },
   }
 };
 </script>

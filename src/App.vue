@@ -20,19 +20,25 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link class="nav-link" to="/">Home</router-link>
+              <router-link class="nav-link" to="/" v-if="isAuthenticated">Home</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/professors">Professors</router-link>
+              <router-link class="nav-link" to="/professors" v-if="isAuthenticated">Professors</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/gradebooks/create">Create Gradebook</router-link>
+              <router-link class="nav-link" to="/gradebooks/create" v-if="isAuthenticated">Create Gradebook</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/professors/create">Create Professor</router-link>
+              <router-link class="nav-link" to="/professors/create" v-if="isAuthenticated">Create Professor</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/login">Login</router-link>
+              <router-link class="nav-link" to="/login" v-if="!isAuthenticated">Login</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/register" v-if="!isAuthenticated">Register</router-link>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" @click="logout" v-if="isAuthenticated">Logout</a>
             </li>
           </ul>
         </div>
@@ -47,5 +53,19 @@
 </template>
 
 <script>
-export default {};
+import { authService } from "./services/authService";
+
+export default {
+  data() {
+    return {
+      isAuthenticated: authService.isAuthenticated()
+    };
+  },
+ methods: {
+    logout() {
+      authService.logout();
+      this.isAuthenticated = false;
+    }
+  }
+};
 </script>

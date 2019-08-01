@@ -35,7 +35,7 @@
 </template>
 
 <script>
-// import { authService } from '../services/authService'
+import { authService } from '../services/authService'
 export default {
     data () {
         return {
@@ -44,11 +44,11 @@ export default {
         }
     },
     methods: {
-        // login() {
-        //     authService.login(this.email, this.password).then(() => {
-        //         this.$router.push("/");
-        //     });
-        // }
+        login() {
+            authService.login(this.email, this.password).then(() => {
+                this.$router.push("/");
+            });
+        }
     }
 };
 </script>

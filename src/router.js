@@ -7,6 +7,7 @@ import SingleProfessor from './components/SingleProfessor'
 import CreateGradebook from './components/CreateGradebook'
 import CreateProfessor from './components/CreateProfessor'
 import Login from './components/Login'
+import Register from './components/Register'
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,7 @@ const routes = [
     { path: '/professors', component: AllProfessors },
     { path: '/professors/create', component: CreateProfessor },
     { path: '/login', component: Login },
+    { path: '/register', component: Register },
     { path: '/gradebooks/:id', component: SingleGradebook },
     { path: '/professors/:id', component: SingleProfessor },
 ]

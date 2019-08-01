@@ -17,7 +17,7 @@
           <b>Biography:</b> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore.
         </p>
         <div v-if="professor.gradebooks">
-        <p v-if="students.length"><b>This class have {{ students.length }} students.</b></p>
+        <p v-if="professor.gradebooks.students.length"><b>This class have {{ professor.gradebooks.students.length }} students.</b></p>
           <button
             type="button"
             class="btn btn-primary"
@@ -42,7 +42,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(student, index) in students" :key="index">
+                    <tr v-for="(student, index) in professor.gradebooks.students" :key="index">
                       <th scope="row">{{ index }}</th>
                       <td>{{ student.firstName}}</td>
                       <td>{{ student.lastName}}</td>
@@ -65,7 +65,6 @@ export default {
   data() {
     return {
       professor: {},
-      students: {},
       errors: []
     };
   },
@@ -74,9 +73,6 @@ export default {
       .getProfessor(this.$route.params.id)
       .then(response => {
         this.professor = response.data;
-        if(this.professor.gradebooks.length){
-        this.students = this.professor.gradebooks.students;
-        }
       })
       .catch(e => {
         this.errors.push(e);

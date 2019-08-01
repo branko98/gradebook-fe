@@ -29,7 +29,7 @@
     </ul>
     <div
       class="alert alert-danger"
-      v-if="!gradebooks.length"
+      v-if="isGradebooksAvailable"
     >U ovom trenutku nema dnevnika u bazi podataka!</div>
   </div>
 </template>
@@ -42,6 +42,7 @@ export default {
     return {
       gradebooks: [],
       search: '',
+      isGradebooksAvailable: false,
     };
   },
 
@@ -58,6 +59,7 @@ export default {
       .getAll()
       .then(response => {
         this.gradebooks = response.data;
+        this.isGradebooksAvailable = !!this.gradebooks.length;
       })
       .catch(e => {
         this.errors.push(e);
