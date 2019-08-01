@@ -19,9 +19,9 @@
           <label class="input-group-text" for="inputGroupSelect01">Professors</label>
         </div>
         <select class="custom-select" id="inputGroupSelect01" v-model="newGradebook.professor_id">
-          <option selected>Avalivable</option>
+          <option selected :value="0">Avalivable</option>
           <option
-            v-for="(professor, index) in professors"
+            v-for="(professor, index) in avalivableProfessors"
             :key="index"
             :value="`${professor.id}`"
           >{{ professor.firstName }} {{ professor.lastName }}</option>
@@ -40,8 +40,8 @@ export default {
     return {
       professors: {},
       newGradebook: {
-        class: undefined,
-        professor_id: undefined
+        class: "",
+        professor_id: null
       }
     };
   },
@@ -52,7 +52,7 @@ export default {
           return professor;
         }
       });
-    }
+    },
   },
   created() {
     professorService

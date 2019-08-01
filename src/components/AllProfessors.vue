@@ -22,26 +22,11 @@
                 <h5 class="card-title" ><router-link :to="`/professors/${professor.id}`">{{ professor.firstName }} {{ professor.lastName }}</router-link></h5>
                 <p class="card-text" v-if="professor.gradebooks">Class: {{ professor.gradebooks.class }}</p>
                 <p class="card-text" v-else>This professor is avalivable.</p>
-                <a class="card-text" href="#"><small class="text-muted">Details</small></a>
+                <p class="card-text"><small class="text-muted"><router-link :to="`/professors/${professor.id}`">Details</router-link></small></p>
             </div>
             </div>
         </div>
     </div>
-    <ul style="list-style-type:none">
-      <li class="py-3" v-for="(professor, index) in filteredProfessors" :key="index">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">{{ professor.firstName }} {{ professor.lastName }}</h5>
-            <p
-              class="card-subtitle mb-2 text-muted"
-              v-if="professor.gradebooks"
-            >Class: {{ professor.gradebooks.class }}</p>
-            <p v-else>This professor is avalivable.</p>
-            <router-link class="card-link" :to="`/professors/${professor.id}`">Details</router-link>
-          </div>
-        </div>
-      </li>
-    </ul>
   </div>
 </template>
 

@@ -28,6 +28,12 @@
             <li class="nav-item">
               <router-link class="nav-link" to="/gradebooks/create">Create Gradebook</router-link>
             </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/professors/create">Create Professor</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/login">Login</router-link>
+            </li>
           </ul>
         </div>
       </div>

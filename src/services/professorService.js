@@ -9,9 +9,9 @@ export default class ProfessorService {
         return axios.get('professors')
     }
 
-    // addProfessor(gradebook) {
-    //     return axios.post('professor', professor)
-    // }
+    createProfessor(professor) {
+        return axios.post('professors', professor)
+    }
 
     getProfessor(id) {
         return axios.get(`/professors/${id}`)
