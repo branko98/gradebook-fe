@@ -17,13 +17,17 @@ export default class GradebookService {
         return axios.get(`/gradebooks/${id}`)
     }
 
+    editGradebook(id, gradebook) {
+        return axios.put(`/gradebooks/${id}`, gradebook)
+    }
+
     // editGradebook(gradebook, id) {
     //     return axios.put('/gradebooks/' + id, gradebook)
     // }
 
-    // deleteGradebook(id) {
-    //     return axios.delete('/gradebooks/' + id);
-    // }
+    deleteGradebook(id) {
+        return axios.delete('/gradebooks/' + id);
+    }
 }
 
 export const gradebookService = new GradebookService()

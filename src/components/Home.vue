@@ -29,7 +29,7 @@
     </ul>
     <div
       class="alert alert-danger"
-      v-if="isGradebooksAvailable"
+      v-if="!isGradebooksAvailable"
     >U ovom trenutku nema dnevnika u bazi podataka!</div>
   </div>
 </template>
@@ -42,7 +42,7 @@ export default {
     return {
       gradebooks: [],
       search: '',
-      isGradebooksAvailable: false,
+      isGradebooksAvailable: true,
     };
   },
 

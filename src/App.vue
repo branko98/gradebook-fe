@@ -20,10 +20,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <router-link class="nav-link" to="/" v-if="isAuthenticated">Home</router-link>
+              <router-link class="nav-link" to="/">Home</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/professors" v-if="isAuthenticated">Professors</router-link>
+              <router-link class="nav-link" to="/professors">Professors</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/mygradebook" v-if="isAuthenticated">My Gradebook</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/gradebooks/create" v-if="isAuthenticated">Create Gradebook</router-link>
@@ -61,6 +64,11 @@ export default {
       isAuthenticated: authService.isAuthenticated()
     };
   },
+  created() {
+         this.$bus.$on('logged', () => {
+             this.isAuthenticated = authService.isAuthenticated()
+         })
+    },
  methods: {
     logout() {
       authService.logout();

@@ -1,5 +1,5 @@
 <template>
-   <div class="py-3" >
+   <div class="mt-3" >
     <form @submit.prevent="login">
       <div class="input-group mb-5">
             <div class="input-group-prepend">
@@ -43,9 +43,13 @@ export default {
             password: ""
         }
     },
+    created() {
+       this.$bus.$emit('logged', 'user')
+   },
     methods: {
         login() {
             authService.login(this.email, this.password).then(() => {
+                this.$bus.$emit('logged', 'user')
                 this.$router.push("/");
             });
         }

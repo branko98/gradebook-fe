@@ -2,8 +2,8 @@
   <div class="py-3 d-flex justify-content-center">
     <div class="card mb-3 col-md-7 py-3 ">
       <img
-        src="https://www.vpr.org/sites/vpr/files/styles/x_large/public/201903/Marcelo-Gleiser-Dartmouth-20190227.jpg"
-        class="card-img-top"
+        :src="professor.imgUrl"
+        class="card-img-top "
       />
       <div class="card-body">
         <h5 class="card-title">{{ professor.firstName }} {{ professor.lastName }}</h5>
@@ -16,7 +16,7 @@
         <p class="card-text">
           <b>Biography:</b> Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore.
         </p>
-        <div v-if="professor.gradebooks">
+        <div v-if="isGradebooksAvailable()">
         <p v-if="professor.gradebooks.students.length"><b>This class have {{ professor.gradebooks.students.length }} students.</b></p>
           <button
             type="button"
@@ -53,7 +53,7 @@
             </div>
           </div>
         </div>
-        <p class="card-text" v-else><b>This professor is avalivable.</b></p>
+        <p class="card-text" v-if="!isGradebooksAvailable()"><b>This professor is available.</b></p>
       </div>
     </div>
   </div>
@@ -61,11 +61,12 @@
 
 <script>
 import { professorService } from "../services/professorService";
+
 export default {
   data() {
     return {
       professor: {},
-      errors: []
+      errors: [],
     };
   },
   created() {
@@ -78,6 +79,17 @@ export default {
         this.errors.push(e);
         console.log(this.errors)
       });
+  },
+  methods: {
+    isGradebooksAvailable(){
+      if(this.professor){
+        if(this.professor.gradebooks){
+          return true;
+        } else{
+          return false;
+        }
+      }
+    }
   }
 };
 </script>

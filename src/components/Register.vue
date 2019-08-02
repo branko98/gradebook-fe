@@ -24,7 +24,6 @@
             aria-label="Default"
             aria-describedby="inputGroup-sizing-default"
             v-model="user.professor_id"
-            min="2"
             />
       </div>
       <div class="input-group mb-5">
@@ -73,9 +72,14 @@ export default {
             }
         }
     },
+    created() {
+      this.isAuthenticated = authService.isAuthenticated();
+    },
     methods: {
         register() {
         authService.register(this.user).then(() => {
+            this.isAuthenticated = true
+            this.$bus.$emit('logged', 'user')
             this.$router.push('/login');
         });
         }
